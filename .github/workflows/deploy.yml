@@ -21,8 +21,8 @@ jobs:
 
         - name: pull the image from Dockerhub to deploy life
           run: |
-            - sudo docker pull olaranmmy/deployproject:latest
-            - sudo docker run -d -p 80:85 --name deployproject_container olaranmmy/deployproject:latest
+              sudo docker pull olaranmmy/deployproject:latest
+              sudo docker run -d -p 80:85 --name deployproject_container olaranmmy/deployproject:latest
           ## - sudo docker stop deployproject_container
            ## - sudo docker rm deployproject_container
 
