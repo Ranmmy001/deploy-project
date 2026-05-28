@@ -11,7 +11,7 @@ jobs:
           uses: actions/checkout@v6
 
         - name: Build Docker image for the app
-          run: sudo docker build -d olaranmmy/deployproject:latest .  
+          run: sudo docker build -t olaranmmy/deployproject:latest .  
 
         - name: login into the Dockerhub
           run: sudo docker login -u olaranmmy -p ${{ secrets.DOCKER_PASSWORD }}
