@@ -1,0 +1,24 @@
+name: Deployment project
+on:
+  push:
+    branches:
+      - deploy
+jobs:
+  Deployment-jobs:
+    runs-on: ubuntu-latest
+    steps:
+        - name: checkout to root directory
+          uses: actions/checkout@v6
+
+        - name: Build Docker image for the app
+          run: sudo docker build -d olaranmmy/deployproject:latest .  
+
+        - name: login into the Dockerhub
+          run: sudo docker login -u olaranmmy -p ${{ secrets.DOCKER_PASSWORD }}
+
+        - name: push image to dockerhub
+          run: sudo docker push olaranmmy/deployproject:latest
+
+
+
+
