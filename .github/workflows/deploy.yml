@@ -5,28 +5,28 @@ on:
       - deploy
 jobs:
   Deployment-jobs:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
-        - name: checkout to root directory
-          uses: actions/checkout@v6
+      - name: checkout to root directory
+        uses: actions/checkout@v6
 
-        - name: Build Docker image for the app
-          run: sudo docker build -t olaranmmy/deployproject:latest .  
+      - name: Build Docker image for the app
+        run: sudo docker build -t olaranmmy/deployproject:latest .  
 
-        - name: login into the Dockerhub
-          run: sudo docker login -u olaranmmy -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: login into the Dockerhub
+        run: sudo docker login -u olaranmmy -p ${{ secrets.DOCKER_PASSWORD }}
 
-        - name: push image to dockerhub
-          run: sudo docker push olaranmmy/deployproject:latest
+      - name: push image to dockerhub
+        run: sudo docker push olaranmmy/deployproject:latest
 
-        - name: pull the image from Dockerhub to deploy life
-          run: |
+      - name: pull the image from Dockerhub to deploy life
+        run: |
               sudo docker pull olaranmmy/deployproject:latest
               
               sudo docker stop deployproject_container || true
               sudo docker rm deployproject_container || true
               
-              sudo docker run -d -p 80:85 --name deployproject_container olaranmmy/deployproject:latest
+              sudo docker run -d -p 1235:80 --name deployproject_container olaranmmy/deployproject:latest
               
 
 
